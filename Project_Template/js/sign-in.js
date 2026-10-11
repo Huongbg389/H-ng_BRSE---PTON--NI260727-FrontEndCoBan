@@ -1,14 +1,14 @@
-// Lay form dang nhap
+// Lấy form đăng nhập
 
 const signInForm = document.getElementById("sign-in-form");
 
-// Lay cac o input
+// Lấy các ô input
 
 const emailInput = document.getElementById("email");
 
 const passwordInput = document.getElementById("password");
 
-// Lay cac thong bao
+// Lấy các khu vực hiển thị thông báo
 
 const loginValidation = document.getElementById("login-validation");
 
@@ -16,31 +16,31 @@ const loginToast = document.getElementById("login-toast");
 
 const loginError = document.getElementById("login-error");
 
-// Thong bao input bi bo trong
+// Lấy các thông báo khi input bị bỏ trống
 
 const emailCannotBlank = document.querySelector(".email-cannot-blank");
 
 const passwordCannotBlank = document.querySelector(".password-cannot-blank");
 
-// Lay phan msg
+// Lấy phần tử hiển thị thông báo
 
 const msg = document.getElementById("msg");
 
-// Bat su kien submit form
+// Bắt sự kiện submit form
 
 signInForm.addEventListener("submit", function (e) {
 
-  // Khong cho form reload trang
+  // Ngăn chặn form tự động reload trang
 
   e.preventDefault();
 
-  // Lay du lieu nguoi dung nhap
+  // Lấy dữ liệu người dùng nhập
 
   const email = emailInput.value.trim();
 
   const password = passwordInput.value;
 
-  // An thong bao cu
+  // Ẩn các thông báo cũ trước khi kiểm tra dữ liệu mới
 
   loginValidation.classList.add("hidden");
 
@@ -52,7 +52,7 @@ signInForm.addEventListener("submit", function (e) {
 
   passwordCannotBlank.classList.add("hidden");
 
-  // 1. Email khong duoc de trong
+  // 1. Kiểm tra email có bị bỏ trống hay không
 
   if (email === "") {
 
@@ -65,7 +65,7 @@ signInForm.addEventListener("submit", function (e) {
     return;
   }
 
-  // 2. Mat khau khong duoc de trong
+  // 2. Kiểm tra mật khẩu có bị bỏ trống hay không
 
   if (password === "") {
 
@@ -75,14 +75,15 @@ signInForm.addEventListener("submit", function (e) {
 
     msg.classList.add("show");
 
-    return;
+    return; // Dừng hàm nếu mật khẩu để trống
   }
 
-  // Lay danh sach user tu localStorage
+  // Lấy danh sách tài khoản từ Local Storage 
+  // Nếu chưa có dữ liệu thì tạo một mảng rỗng
 
   const userList = JSON.parse(localStorage.getItem("userList")) || [];
 
-  // Tim user co email va password dung
+  //Tìm tài khoản có email và mật khẩu trùng với dữ liệu người dùng nhập
 
   const user = userList.find(function (user) {
 
@@ -90,7 +91,7 @@ signInForm.addEventListener("submit", function (e) {
 
   });
 
-  // 3. Kiem tra tai khoan
+  // 3. Kiểm tra tài khoản có tồn tại hay không
 
   if (!user) {
 
@@ -101,19 +102,13 @@ signInForm.addEventListener("submit", function (e) {
     return;
   }
 
-  // 4. Dang nhap thanh cong
+  // 4. Đăng nhập thành công
 
   loginToast.classList.remove("hidden");
 
   msg.classList.add("show");
 
-  // Chuyen sang Dashboard
-
-  setTimeout(function () {
+  // Chuyển người dùng sang trang Dashboard
 
     window.location.href = "./dashboard.html";
-
-  }, 1000);
-
-});
-```
+})
