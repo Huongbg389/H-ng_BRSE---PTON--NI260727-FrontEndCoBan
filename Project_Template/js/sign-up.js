@@ -16,7 +16,6 @@ const usernameCannotBlank = document.querySelector(".username-cannot-blank");
 const passwordCannotBlank = document.querySelector(".password-cannot-blank");
 
 // Lấy các thông báo lỗi khi dữ liệu không hợp lệ
-const emailExist = document.querySelector(".email-exist");
 const emailError = document.querySelector(".email-error");
 const passwordMinLengthError = document.querySelector(
   ".password-min-length-error"
@@ -47,7 +46,6 @@ signUpForm.addEventListener("submit", function (e) {
   usernameCannotBlank.classList.add("hidden");
   passwordCannotBlank.classList.add("hidden");
 
-  emailExist.classList.add("hidden");
   emailError.classList.add("hidden");
   passwordMinLengthError.classList.add("hidden");
   passwordNumberRequiredError.classList.add("hidden");
@@ -106,18 +104,6 @@ signUpForm.addEventListener("submit", function (e) {
   // Lấy danh sách tài khoản đã đăng ký từ Localstorage
   // Nếu chưa có dữ liệu thì khởi tạo mảng rỗng
   let userList = JSON.parse(localStorage.getItem("userList")) || [];
-
-  // Kiểm tra email đã tồn tại trong danh sách tài khoản hay chưa
-  const emailExists = userList.some(function (user) {
-    return user.email === email;
-  });
-  
-  // Nếu emai đã tồn tại thì hiển thị thông báo lỗi và dùng hàm
-  if (emailExists) {
-    signUpError.classList.remove("hidden");
-    emailExist.classList.remove("hidden");
-    return;
-  }
 
   // Tạo đối tượng tài khoản mới với các thông tin mặc định
   const newUser = {

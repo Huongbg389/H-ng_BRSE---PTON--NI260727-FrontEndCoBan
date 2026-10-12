@@ -4,9 +4,6 @@ const userCodeInput = document.getElementById("user-code");
 // Lấy ô Username
 const usernameInput = document.getElementById("username");
 
-// Lấy ô Full Name
-const fullnameInput = document.getElementById("fullname");
-
 //Lấy ô Email
 const emailInput = document.getElementById("email");
 
@@ -64,9 +61,6 @@ userCodeInput.value = user.usercode;
 // Hiển thị Username
 usernameInput.value = user.username;
 
-// Hiển thị Full Name
-fullnameInput.value = user.fullname || "";
-
 // Hiển thị Email
 emailInput.value = user.email;
 
@@ -103,15 +97,6 @@ editUserForm.addEventListener("submit", function (event) {
     }
 
     
-    // Lấy giá trị Full Name và loại bỏ khoảng trắng ở đầu, cuối
-    const fullname = fullnameInput.value.trim();
-
-    // Kiểm tra Full Name có bị để trống không
-    if (fullname === "") {
-        alert("Full Name không được để trống");
-        return;
-    }
-
     // Lấy Email và loại bỏ khoảng trắng ở đầu, cuối
     const email = emailInput.value.trim();
 
@@ -159,9 +144,6 @@ editUserForm.addEventListener("submit", function (event) {
 
     // Cập nhật Username mới
     user.username = username;
-
-    // Cập nhật Full Name mới
-    user.fullname = fullname;
 
     // Cập nhật Password mới
     user.password = password;

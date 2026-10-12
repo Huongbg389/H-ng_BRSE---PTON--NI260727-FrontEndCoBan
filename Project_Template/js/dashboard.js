@@ -5,13 +5,6 @@
 // lấy dữ liệu user đã được lưu trước đó
 // Dữ liệu trong Local Storage luôn được lưu dưới dạng chuỗi (string),
 // nên cần dùng JSON.parse() để chuyển chuỗi JSON thành mảng JavaScript.
-// Ví dụ dữ liệu trong Local Storage:
-// '[{"usercode":"U001","username":"Huong"}]'
-//
-// Sau JSON.parse():
-// [
-//   { usercode: "U001", username: "Huong" }
-// ]
 // Nếu Local Storage chưa có "userList"
 // thì getItem() sẽ trả về null.
 // Khi đó:
@@ -38,7 +31,7 @@ const tableBody = document.getElementById("table-body");
 // → lấy danh sách user trong userList
 // → tạo các hàng <tr>
 // → đưa thông tin từng user vào bảng
-// render = hiển thị / vẽ dữ liệu lên giao diện
+// render = hiển thị dữ liệu lên giao diện
 
 function renderUsers() {
 
@@ -76,10 +69,6 @@ function renderUsers() {
 
   // DUYỆT QUA TỪNG USER
   // forEach() dùng để duyệt qua từng phần tử trong mảng.
-  //
-  // Ví dụ:
-  // userList có 3 user
-  // → function sẽ chạy 3 lần.
   // Mỗi lần chạy, biến user đại diện cho 1 user.
 
   userList.forEach(function (user) {
@@ -97,15 +86,7 @@ function renderUsers() {
     // ${user.usercode}
     // → lấy giá trị usercode của user hiện tại.
     // ${user.username}
-    // → lấy username.
-    // ${user.email}
-    // → lấy email.
-    // ${user.role}
-    // → lấy role.
-    // ${user.birthday}
-    // → lấy ngày sinh.
-    // ${user.status}
-    // → lấy trạng thái của user.
+    // → lấy giá trị username của user hiện tại...
 
     row.innerHTML = `
       <td>${user.usercode}</td>
@@ -157,7 +138,7 @@ function renderUsers() {
   });
 }
 
-// 4. XÓA USER
+// 3. XÓA USER
 
 // Bắt sự kiện click trong khu vực tbody.
 // Khi người dùng click vào một vị trí bên trong tbody,
@@ -186,11 +167,6 @@ tableBody.addEventListener("click", function (e) {
     // Đây là một custom data attribute.
     // dataset.usercode
     // → lấy giá trị của data-usercode.
-    // Ví dụ:
-    // data-usercode="U001"
-    // thì:
-    // e.target.dataset.usercode
-    // → "U001"
 
     const usercode = e.target.dataset.usercode;
 
@@ -249,11 +225,6 @@ tableBody.addEventListener("click", function (e) {
     // JSON.stringify()
     // → chuyển mảng JavaScript thành chuỗi JSON
     // để có thể lưu vào Local Storage.
-    // Ví dụ:
-    // Mảng JavaScript:
-    // [{ usercode: "U001" }]
-    // JSON.stringify()
-    // → '[{"usercode":"U001"}]'
 
     localStorage.setItem(
       "userList",
@@ -271,7 +242,7 @@ tableBody.addEventListener("click", function (e) {
   }
 });
 
-// 5. HIỂN THỊ DỮ LIỆU KHI MỞ DASHBOARD
+// 4. HIỂN THỊ DỮ LIỆU KHI MỞ DASHBOARD
 
 // Khi JavaScript chạy,
 // gọi renderUsers() để lấy userList

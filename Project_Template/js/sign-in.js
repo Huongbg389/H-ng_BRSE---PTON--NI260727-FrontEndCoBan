@@ -83,7 +83,8 @@ signInForm.addEventListener("submit", function (e) {
 
   const userList = JSON.parse(localStorage.getItem("userList")) || [];
 
-  //Tìm tài khoản có email và mật khẩu trùng với dữ liệu người dùng nhập
+  //Tìm tài khoản có email và mật khẩu trùng 
+  // dữ liệu người dùng nhập
 
   const user = userList.find(function (user) {
 
